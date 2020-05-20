@@ -126,6 +126,8 @@ function mainFunction() {
         scoreDisplay.innerHTML = 0;
         wordInput.value = '';
         wordInput.focus();
+        document.getElementById('level-medium').style.opacity = 0.35;
+        document.getElementById('level-hard').style.opacity = 0.35;
         init();
     });
     
@@ -136,6 +138,8 @@ function mainFunction() {
         scoreDisplay.innerHTML = 0;
         wordInput.value = '';
         wordInput.focus();
+        document.getElementById('level-easy').style.opacity = 0.35;
+        document.getElementById('level-hard').style.opacity = 0.35;
         init();
     });
     
@@ -146,6 +150,8 @@ function mainFunction() {
         scoreDisplay.innerHTML = 0;
         wordInput.value = '';
         wordInput.focus();
+        document.getElementById('level-easy').style.opacity = 0.35;
+        document.getElementById('level-medium').style.opacity = 0.35;
         init();
     });
 }
