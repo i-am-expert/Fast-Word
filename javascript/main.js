@@ -1,4 +1,4 @@
-window.addEventListener('load', mainFunction);
+window.addEventListener('load', selectTest);
 
 let currentLevel;
 
@@ -118,8 +118,28 @@ const words = [
     'carve'
 ];
 
+function selectTest() {
+    document.getElementById('test-option').style.display = 'block';
+    document.getElementById('word-test').addEventListener('click', () => {
+        document.getElementById('test-option').style.display = 'none';
+        document.getElementById('word-content').style.display = 'block';
+        document.getElementById('para-content').style.display = 'none';
+        console.log("Hello");
+        mainFunction();
+    });
+    document.getElementById('para-test').addEventListener('click', () => {
+        document.getElementById('test-option').style.display = 'none';
+        document.getElementById('word-content').style.display = 'none';
+        document.getElementById('para-content').style.display = 'block';
+        mainParaFunction();
+    });
+
+}
+
+/* Word Test Functions Start */
 function mainFunction() {
     document.getElementById('level-easy').addEventListener('click', () => {
+        console.log(123);
         currentLevel = 6;
         time = 6;
         wordInput.disabled = false;
@@ -128,6 +148,8 @@ function mainFunction() {
         wordInput.focus();
         document.getElementById('level-medium').style.opacity = 0.35;
         document.getElementById('level-hard').style.opacity = 0.35;
+        document.getElementById('level-medium').disabled = true;
+        document.getElementById('level-hard').disabled = true;
         init();
     });
     
@@ -140,6 +162,8 @@ function mainFunction() {
         wordInput.focus();
         document.getElementById('level-easy').style.opacity = 0.35;
         document.getElementById('level-hard').style.opacity = 0.35;
+        document.getElementById('level-easy').disabled = true;
+        document.getElementById('level-hard').disabled = true;
         init();
     });
     
@@ -152,6 +176,8 @@ function mainFunction() {
         wordInput.focus();
         document.getElementById('level-easy').style.opacity = 0.35;
         document.getElementById('level-medium').style.opacity = 0.35;
+        document.getElementById('level-easy').disabled = true;
+        document.getElementById('level-medium').disabled = true;
         init();
     });
 }
@@ -213,10 +239,22 @@ function checkStatus() {
 
     clearInterval(countDownInterval);
     clearInterval(CheckStatusInterval);
-    wordInput.removeEventListener('input', () => { });
-    document.getElementById('level-easy').removeEventListener('click', () => {});
-    document.getElementById('level-medium').removeEventListener('click', () => {});
-    document.getElementById('level-hard').removeEventListener('click', () => {});
-    mainFunction();
+    
   }
 }
+
+document.getElementById('restart-btn').addEventListener('click', () => {
+    window.location.reload();
+});
+/* Word Test Functions End */
+
+
+/* Para Test Functions Start */
+function mainParaFunction() {
+    
+}
+
+document.getElementById('para-restart-btn').addEventListener('click', () => {
+    window.location.reload();
+});
+/* Para Test Functions End */
