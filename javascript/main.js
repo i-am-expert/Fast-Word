@@ -248,10 +248,80 @@ document.getElementById('restart-btn').addEventListener('click', () => {
 });
 /* Word Test Functions End */
 
+const paragraphs = [
+    'Don\'t forget that gifts often come with costs that go beyond their purchase price. When you purchase a child the latest smartphone, you\'re also committing to a monthly phone bill. When you purchase the latest gaming system, you\'re likely not going to be satisfied with the games that come with it for long and want to purchase new titles to play. When you buy gifts it\'s important to remember that some come with additional costs down the road that can be much more expensive than the initial gift itself.',
+
+    'There was something in the tree. It was difficult to tell from the ground, but Rachael could see movement. She squinted her eyes and peered in the direction of the movement, trying to decipher exactly what she had spied. The more she peered, however, the more she thought it might be a figment of her imagination. Nothing seemed to move until the moment she began to take her eyes off the tree. Then in the corner of her eye, she would see the movement again and begin the process of staring again.',
+
+    'Her mom had warned her. She had been warned time and again, but she had refused to believe her. She had done everything right and she knew she would be rewarded for doing so with the promotion. So when the promotion was given to her main rival, it not only stung, it threw her belief system into disarray. It was her first big lesson in life, but not the last.',
+
+    'Barbara had been waiting at the table for twenty minutes. it had been twenty long and excruciating minutes. David had promised that he would be on time today. He never was, but he had promised this one time. She had made him repeat the promise multiple times over the last week until she\'d believed his promise. Now she was paying the price.',
+
+    'One dollar and eighty-seven cents. That was all. And sixty cents of it was in pennies. Pennies saved one and two at a time by bulldozing the grocer and the vegetable man and the butcher until one’s cheeks burned with the silent imputation of parsimony that such close dealing implied. One dollar and eighty-seven cents. And the next day would be Christmas.',
+
+    'She nervously peered over the edge. She understood in her mind that the view was supposed to be beautiful, but all she felt was fear. There had always been something about heights that disturbed her, and now she could feel the full force of this unease. She reluctantly crept a little closer with the encouragement of her friends as the fear continued to build. She couldn\'t help but feel that something horrible was about to happen.'
+]
+
+const startBtn = document.querySelector('#start-btn');
+const currentPara = document.querySelector('#current-para');
+const inputPara = document.querySelector('#para-input');
+const displayTime = document.querySelector('#para-time');
 
 /* Para Test Functions Start */
 function mainParaFunction() {
-    
+    document.getElementById('start-btn').addEventListener('click', () => {
+        time = 10;
+        startBtn.disabled = true;
+        displayTime.innerHTML = time;
+        showPara(paragraphs);
+        inputPara.disabled = false;
+        inputPara.focus();
+        setInterval(countdown, 1000);
+    });
+}
+
+function showPara(paragraphs) {
+    const randIndex = Math.floor(Math.random() * paragraphs.length);
+    currentPara.innerHTML = paragraphs[randIndex];
+}
+
+function countdown() {
+    if (time > 0) {
+      time--;
+    } else if (time === 0) {
+      calculateResults();
+    }
+    displayTime.innerHTML = time;
+}
+
+function calculateResults() {
+    inputPara.disabled = true;
+    let inputString = inputPara.value;
+    let actualString = currentPara.innerHTML;
+    inputString = inputString.replace(/\s\s+/g, ' ');
+    inputString = inputString.trimStart();
+    inputString = inputString.trimEnd();
+    // console.log(inputString.length)
+    // var i;
+    // for(i = 0; i < inputString.length; i++) {
+    //     console.log(inputString[i]);
+    // }
+    var typedWords = inputString.split(" ");
+    var originalWords = actualString.split(" ");
+    matchStrings(typedWords, originalWords);
+}
+
+function matchStrings(typedWords, originalWords) {
+    var i;
+    let correct = 0, incorrect = 0;
+    for(i = 0; i < Math.min(typedWords.length, originalWords.length); i++) {
+        if(typedWords[i] === originalWords[i]) {
+            correct += 1;
+        } else {
+            incorrect += 1;
+        }
+    }
+    console.log(correct, incorrect);
 }
 
 document.getElementById('para-restart-btn').addEventListener('click', () => {
