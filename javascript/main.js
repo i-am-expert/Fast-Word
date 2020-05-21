@@ -266,11 +266,14 @@ const startBtn = document.querySelector('#start-btn');
 const currentPara = document.querySelector('#current-para');
 const inputPara = document.querySelector('#para-input');
 const displayTime = document.querySelector('#para-time');
+const paraMessage = document.querySelector('#para-message');
+const correctScore = document.querySelector('#correct-score');
+const incorrectScore = document.querySelector('#incorrect-score');
 
 /* Para Test Functions Start */
 function mainParaFunction() {
     document.getElementById('start-btn').addEventListener('click', () => {
-        time = 10;
+        time = 5;
         startBtn.disabled = true;
         displayTime.innerHTML = time;
         showPara(paragraphs);
@@ -308,7 +311,13 @@ function calculateResults() {
     // }
     var typedWords = inputString.split(" ");
     var originalWords = actualString.split(" ");
-    matchStrings(typedWords, originalWords);
+    if(inputString === null || inputString === ' ' || inputString === '') {
+        paraMessage.style.display = 'flex';
+        correctScore.innerHTML = 0;
+        incorrectScore.innerHTML = 0;
+    } else {
+        matchStrings(typedWords, originalWords);
+    }
 }
 
 function matchStrings(typedWords, originalWords) {
@@ -321,7 +330,9 @@ function matchStrings(typedWords, originalWords) {
             incorrect += 1;
         }
     }
-    console.log(correct, incorrect);
+    paraMessage.style.display = 'flex';
+    correctScore.innerHTML = correct;
+    incorrectScore.innerHTML = incorrect;
 }
 
 document.getElementById('para-restart-btn').addEventListener('click', () => {
