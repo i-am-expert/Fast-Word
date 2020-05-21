@@ -273,7 +273,7 @@ const incorrectScore = document.querySelector('#incorrect-score');
 /* Para Test Functions Start */
 function mainParaFunction() {
     document.getElementById('start-btn').addEventListener('click', () => {
-        time = 5;
+        time = 60;
         startBtn.disabled = true;
         displayTime.innerHTML = time;
         showPara(paragraphs);
@@ -304,11 +304,6 @@ function calculateResults() {
     inputString = inputString.replace(/\s\s+/g, ' ');
     inputString = inputString.trimStart();
     inputString = inputString.trimEnd();
-    // console.log(inputString.length)
-    // var i;
-    // for(i = 0; i < inputString.length; i++) {
-    //     console.log(inputString[i]);
-    // }
     var typedWords = inputString.split(" ");
     var originalWords = actualString.split(" ");
     if(inputString === null || inputString === ' ' || inputString === '') {
