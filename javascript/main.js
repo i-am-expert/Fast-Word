@@ -279,7 +279,7 @@ function mainParaFunction() {
         showPara(paragraphs);
         inputPara.disabled = false;
         inputPara.focus();
-        setInterval(countdown, 1000);
+        setInterval(countdown1, 1000);
     });
 }
 
@@ -288,7 +288,7 @@ function showPara(paragraphs) {
     currentPara.innerHTML = paragraphs[randIndex];
 }
 
-function countdown() {
+function countdown1() {
     if (time > 0) {
       time--;
     } else if (time === 0) {
